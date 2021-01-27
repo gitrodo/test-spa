@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import './assets/scss/variables';
+
+* {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+
+.navbar {
+  a {
+    color: $color-white !important;
+
+    &:hover {
+      color: $color-white-secondary !important;
+    }
+  }
+}
+
+a {
+  &:hover {
+    // I am using here the transform to give it an animation
+    transform: translateY(-1px);
+    transition: all .2s;
+  }
+
+  // Nested
+  &::after {
+    transition: all .4s;
+  }
+}
+
+.btn:hover {
+  // // I am using here the transform to give it an animation
+  transform: translateY(-3px);
+  transition: all .2s;
+}
+
+.btn::after {
+  transition: all .4s;
+}
