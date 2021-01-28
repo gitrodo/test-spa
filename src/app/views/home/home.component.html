@@ -1,5 +1,40 @@
-<app-navbar></app-navbar>
-
-
-
-<app-footer></app-footer>
+<div class="mt-1">
+  <h4 class="text-center">
+    Number of tweets {{tweets.length}}
+  </h4>
+</div>
+<div class="mt-1">
+  <ol class="card-columns">
+    <li class="tweet-card card" *ngFor="let tweet of tweets">
+      <div class="tweet-content">
+        <div class="tweet-header">
+          <span class="fullname">
+            <strong>{{tweet.includes.users[0].username}}</strong>
+          </span>
+          <span class="username mr-1">@{{tweet.includes.users[0].username}}</span>
+          <span class="tweet-time">- Jul 18</span>
+        </div>
+        <a>
+          <img class="tweet-card-avatar" src="../../../assets/images/img-prof.png" alt="">
+        </a>
+        <div class="tweet-text">
+          <p>{{tweet.data.text}}</p>
+        </div>
+        <div class="tweet-footer">
+          <a class="tweet-footer-btn" *ngIf="tweet.data.public_metrics.like_count">
+            <i class="octicon octicon-comment" aria-hidden="true"></i><span>
+              {{tweet.data.public_metrics.like_count}}</span>
+          </a>
+          <a class="tweet-footer-btn" *ngIf="tweet.data.public_metrics.quote_count">
+            <i class="octicon octicon-sync" aria-hidden="true"></i><span>
+              {{tweet.data.public_metrics.quote_count}}</span>
+          </a>
+          <a class="tweet-footer-btn" *ngIf="tweet.data.public_metrics.reply_count">
+            <i class="octicon octicon-heart" aria-hidden="true"></i><span>
+              {{tweet.data.public_metrics.reply_count}}</span>
+          </a>
+        </div>
+      </div>
+    </li>
+  </ol>
+</div>
