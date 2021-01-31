@@ -6,32 +6,14 @@ const socketIo = require('socket.io');
 const needle = require('needle');
 const config = require('dotenv').config();
 const TOKEN = process.env.TWITTER_BEARER_TOKEN;
-
 const app = express();
-
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// let count = 0;
-//
-// io.on('connection', () => {
-//   console.log('Socket connected');
-//
-//   io.emit('tweet', count);
-//
-//   setInterval(() => {
-//     count++;
-//     console.log('count', count);
-//     io.emit('tweet', count);
-//   }, 1000);
-// });
-
-// We set the rules and endpoints
 const rulesURL = TwitterURL.rules;
 const streamURL = TwitterURL.stream;
 const rules = [{value: 'giveaway'}];
 
-// Get stream rules
 async function getRules(): Promise<any> {
   const response = await needle('get', rulesURL, {
     headers: {
@@ -41,7 +23,6 @@ async function getRules(): Promise<any> {
   return response.body;
 }
 
-// Set stream rules
 async function setRules(): Promise<any> {
   const data = {
     add: rules,
@@ -57,7 +38,6 @@ async function setRules(): Promise<any> {
   return response.body;
 }
 
-// Delete stream rules
 async function deleteRules({data}) {
   if (!Array.isArray(data)) {
     return null;
@@ -114,7 +94,6 @@ function emitTweets(socket: { emit: (arg0: string, arg1: any) => void }): any {
 }
 
 function initSocketConnection(): void {
-
   io.on('connection', async () => {
     console.log('Socket connected');
 
@@ -131,10 +110,8 @@ function initSocketConnection(): void {
       }, 2 ** timeout);
       emitTweets(io);
     });
-
   });
 }
 
 initSocketConnection();
-
 server.listen(3000, () => console.log(`Listening on port ${3000}`));
