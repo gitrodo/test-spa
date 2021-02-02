@@ -126,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "test-spa"
+    }
+  },
+  "defaultProject": "test-spa",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

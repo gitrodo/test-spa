@@ -1,4 +1,4 @@
-import { TwitterURL } from "./config/url.enum";
+import { TwitterURL } from './config/url.enum';
 const http = require('http');
 const path = require('path');
 const express = require('express');
@@ -9,7 +9,6 @@ const TOKEN = process.env.TWITTER_BEARER_TOKEN;
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
-
 const rulesURL = TwitterURL.rules;
 const streamURL = TwitterURL.stream;
 const rules = [{value: 'giveaway'}];
@@ -38,7 +37,7 @@ async function setRules(): Promise<any> {
   return response.body;
 }
 
-async function deleteRules({data}) {
+async function deleteRules({ data }) {
   if (!Array.isArray(data)) {
     return null;
   }
@@ -114,4 +113,4 @@ function initSocketConnection(): void {
 }
 
 initSocketConnection();
-server.listen(3000, () => console.log(`Listening on port ${3000}`));
+server.listen(3000, () => console.log(`Listening on port ${3000} for Twitter API with SocketIO`));
